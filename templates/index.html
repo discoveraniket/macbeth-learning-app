@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <title>Macbeth Learning App</title>
+  <script>
+    async function loadQuestion() {
+      const res = await fetch('/question');
+      const data = await res.json();
+      document.getElementById('question').innerText = data.question;
+      document.getElementById('expected').innerText = "";
+      document.getElementById('userAnswer').value = "";
+    }
+
+    async function checkAnswer() {
+      const question = document.getElementById('question').innerText;
+      const answer = document.getElementById('userAnswer').value;
+      const res = await fetch('/check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question, answer })
+      });
+      const data = await res.json();
+      document.getElementById('expected').innerText = data.correct ? "Correct!" : "Wrong. Expected: " + data.expected;
+    }
+
+    window.onload = loadQuestion;
+  </script>
+</head>
+<body>
+  <h1>Macbeth Quiz</h1>
+  <p id="question"></p>
+  <input type="text" id="userAnswer" placeholder="Your answer">
+  <button onclick="checkAnswer()">Submit</button>
+  <button onclick="loadQuestion()">Next Question</button>
+  <p id="expected"></p>
+</body>
+</html>
