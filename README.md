@@ -80,8 +80,7 @@ macbeth_learning_app/
 
 ## 👨‍💻 Author
 
-**Aniket Sarkar**  
-🪪 Built as a real-client project for an English professor.
+[**Aniket Sarkar**](https://github.com/discoveraniket/README.md)
 
 ---
 
